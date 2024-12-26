@@ -1,4 +1,4 @@
-### Calculate Price
+### Calculate Price Success
 POST http://127.0.0.1:8337/calculate-price
 Accept: application/json
 Content-Type: application/json
@@ -9,7 +9,63 @@ Content-Type: application/json
   "couponCode": "sale_25_percent"
 }
 
-### Execute Purchase
+### Calculate Price With Wrong Tax Number
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+  "product": 1,
+  "taxNumber": "73fsdhf834",
+  "couponCode": "sale_25_percent"
+}
+
+### Calculate Price With Wrong Coupon Code
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+  "product": 1,
+  "taxNumber": "DE123456789",
+  "couponCode": "asdasdas"
+}
+
+### Calculate Price With No Product Id
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+  "product": 7,
+  "taxNumber": "DE123456789",
+  "couponCode": "sale_25_percent"
+}
+
+### Calculate Price With Null Coupon Code
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+  "product": 1,
+  "taxNumber": "DE123456789",
+  "couponCode": null
+}
+
+### Execute Purchase Success
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+  "product": 1,
+  "taxNumber": "IT12345678900",
+  "couponCode": "sale_25_percent",
+  "paymentProcessor": "paypal"
+}
+
+### Execute Purchase Too High Price
 POST http://127.0.0.1:8337/purchase
 Accept: application/json
 Content-Type: application/json

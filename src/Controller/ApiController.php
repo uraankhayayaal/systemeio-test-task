@@ -2,7 +2,6 @@
  
 namespace App\Controller;
 
-use App\Exception\PaymentException;
 use App\Payment\PaymentInterface;
 use App\Request\CalculatePriceRequest;
 use App\Request\PurchaseRequest;
@@ -32,24 +31,21 @@ class ApiController extends AbstractController
     #[Route('/purchase', name: 'purchase', methods:['post'] )]
     public function purchase(PurchaseRequest $request, PaymentInterface $payment): JsonResponse
     {
-        try {
-            $isPaid = $this->service->purchase($request, $payment);
-        } catch (PaymentException $exception) {
-            $response = new JsonResponse([
-                'message' => 'payment_error',
-                'errors' => [
-                    [
-                        'message' => $exception->getMessage(),
-                    ],
-                ],
-            ]);
-            $response->setStatusCode(422)->send();
-            exit;
-        }
+        $isPaid = $this->service->purchase($request, $payment);
 
         return $this->json([
-            'product' => $request->product,
             'isPaid' => $isPaid,
         ]);
+    }
+
+    protected function json(mixed $data, int $status = 200, array $headers = [], array $context = []): JsonResponse
+    {
+        $data = [
+            'status' => 'ok',
+            'message' => 'success',
+            'data' => $data,
+        ];
+
+        return parent::json($data, $status, $headers, $context);
     }
 }

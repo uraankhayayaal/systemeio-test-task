@@ -25,3 +25,6 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Payment\PaymentInterface: '@App\Payment\PaypalPayment'
     # App\Payment\PaymentInterface: '@App\Payment\StripePayment'
+    App\Core\EventListener\ExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }

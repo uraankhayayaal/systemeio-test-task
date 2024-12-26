@@ -9,12 +9,17 @@ use App\Helper\CurrencyHelper;
 use App\Payment\PaymentInterface;
 use App\Request\CalculatePriceRequest;
 use App\Request\PurchaseRequest;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class OrderService
 {
     public function calculatePrice(CalculatePriceRequest $request): float
     {
         $product = ProductEnum::tryFrom($request->product);
+
+        if ($product === null) {
+            throw new NotFoundHttpException("Product with id: $request->product not found");
+        }
     
         $coupon = CouponEnum::tryFrom($request->couponCode);
 

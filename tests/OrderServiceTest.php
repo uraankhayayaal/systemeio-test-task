@@ -28,7 +28,7 @@ class OrderServiceTest extends WebTestCase
             'getFinalPriceByTaxAndCoupon',
             [
                 100,
-                CountryTaxFormatEnum::GERNAMY,
+                CountryTaxFormatEnum::GERMANY,
                 CouponEnum::SALE_QUARTER,
             ],
         );
@@ -43,7 +43,7 @@ class OrderServiceTest extends WebTestCase
             'getFinalPriceByTaxAndCoupon',
             [
                 5,
-                CountryTaxFormatEnum::GERNAMY,
+                CountryTaxFormatEnum::GERMANY,
                 CouponEnum::SALE_5,
             ],
         );

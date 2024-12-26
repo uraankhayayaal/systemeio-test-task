@@ -18,11 +18,11 @@ class PurchaseRequest extends BaseRequest
     public $product;
 
     #[AtLeastOneOf([
-        new Regex(CountryTaxFormatEnum::GERNAMY->value),
-        new Regex(CountryTaxFormatEnum::ITALY->value),
-        new Regex(CountryTaxFormatEnum::FRANCE->value),
-        new Regex(CountryTaxFormatEnum::GREECE->value),
-    ])]
+        new Regex(CountryTaxFormatEnum::GERMANY->value, message: "Germany"),
+        new Regex(CountryTaxFormatEnum::ITALY->value, message: "Italy"),
+        new Regex(CountryTaxFormatEnum::FRANCE->value, message: "France"),
+        new Regex(CountryTaxFormatEnum::GREECE->value, message: "Greece"),
+    ], message: "The tax number does not match any format of countries:")]
     #[NotBlank([])]
     public $taxNumber;
 

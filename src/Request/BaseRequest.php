@@ -26,18 +26,22 @@ abstract class BaseRequest
     {
         $errors = $this->validator->validate($this);
 
-        $messages = ['message' => 'validation_failed', 'errors' => []];
+        $messages = [
+            'status' => 'error',
+            'message' => 'validation_failed',
+            'data' => [],
+        ];
 
         /** @var \Symfony\Component\Validator\ConstraintViolation  */
         foreach ($errors as $message) {
-            $messages['errors'][] = [
+            $messages['data'][] = [
                 'property' => $message->getPropertyPath(),
                 'value' => $message->getInvalidValue(),
                 'message' => $message->getMessage(),
             ];
         }
 
-        if (count($messages['errors']) > 0) {
+        if (count($messages['data']) > 0) {
             $response = new JsonResponse($messages);
             $response->setStatusCode(422)->send();
 

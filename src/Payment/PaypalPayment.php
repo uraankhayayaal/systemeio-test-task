@@ -29,7 +29,7 @@ class PaypalPayment implements PaymentInterface
         try {
             $this->proccessor->pay($unit);
         } catch (\Exception $exception) {
-            throw new PaymentException($exception->getMessage(), $exception->getCode(), $exception);
+            throw new PaymentException($exception->getMessage(), 0, $exception);
         }
 
         return true;

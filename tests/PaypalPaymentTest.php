@@ -30,10 +30,10 @@ class PaypalPaymentTest extends WebTestCase
 
     public function testPurchaseFails(): void
     {
-        $tooHigthtPrice = 10000000;
+        $tooHighPrice = 10000000;
 
         try {
-            $this->payment->purchase($tooHigthtPrice);
+            $this->payment->purchase($tooHighPrice);
         } catch (Exception $exception) {
             $this->assertInstanceOf(PaymentException::class, $exception);
             $this->equalTo('[#14271] Transaction "c82711ca-7e67-41c8-9f35-5b965e645d12" failed: Too high price', $exception->getMessage());
