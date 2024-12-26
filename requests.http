@@ -15,7 +15,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "product": 1,
+  "product": 4,
   "taxNumber": "IT12345678900",
   "couponCode": "sale_25_percent",
   "paymentProcessor": "paypal"

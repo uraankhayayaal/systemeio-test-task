@@ -7,6 +7,7 @@ enum ProductEnum: int
     case IPHONE = 1;
     case HEADPHONES = 2;
     case CASE = 3;
+    case DIAMOND = 4;
 
     /**
      * @return string[]
@@ -22,6 +23,7 @@ enum ProductEnum: int
             self::IPHONE => 100,
             self::HEADPHONES => 20,
             self::CASE => 10,
+            self::DIAMOND => 500000,
         };
     }
 }

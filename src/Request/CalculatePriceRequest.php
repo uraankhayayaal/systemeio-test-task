@@ -25,7 +25,6 @@ class CalculatePriceRequest extends BaseRequest
     #[NotBlank([])]
     public $taxNumber;
 
-    #[Choice(callback: [CouponEnum::class, 'values'])]
-    #[NotBlank([])]
+    #[Choice(callback: [CouponEnum::class, 'values'], message: 'Wrong coupon number')]
     public $couponCode;
 }

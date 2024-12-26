@@ -16,6 +16,21 @@ enum CountryTaxFormatEnum: string
             self::ITALY => 0.22,
             self::FRANCE => 0.20,
             self::GREECE => 0.24,
+            default => 0,
         };
+    }
+
+    public static function tryFormat(string $taxNumber): self
+    {
+        foreach (self::cases() as $case) {
+            if (preg_match($case->value, $taxNumber)) {
+                return $case;
+            }
+        }
+    }
+
+    public function getTaxedFromPrice(int $price): int
+    {
+        return $price + $price * $this->taxValue();
     }
 }
