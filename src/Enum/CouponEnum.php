@@ -2,6 +2,8 @@
 
 namespace App\Enum;
 
+use App\Helper\CurrencyHelper;
+
 enum CouponEnum: string
 {
     case SALE_FULL = 'sale_100_percent';
@@ -9,9 +11,9 @@ enum CouponEnum: string
     case SALE_THIRD = 'sale_33_percent';
     case SALE_QUARTER = 'sale_25_percent';
 
-    case SALE_1 = 'sale_1_unit';
-    case SALE_2 = 'sale_2_units';
-    case SALE_5 = 'sale_5_units';
+    case SALE_1 = 'sale_1';
+    case SALE_2 = 'sale_2';
+    case SALE_5 = 'sale_5';
 
     /**
      * @return string[]
@@ -66,9 +68,9 @@ enum CouponEnum: string
     private function unitValue(): int
     {
         return match ($this) {
-            self::SALE_1 => 1,
-            self::SALE_2 => 0.5,
-            self::SALE_5 => 0.33,
+            self::SALE_1 => CurrencyHelper::getUnitsFromCurrency(1),
+            self::SALE_2 => CurrencyHelper::getUnitsFromCurrency(2),
+            self::SALE_5 => CurrencyHelper::getUnitsFromCurrency(5),
             default => 0,
         };
     }
