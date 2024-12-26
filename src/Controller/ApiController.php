@@ -2,8 +2,8 @@
  
 namespace App\Controller;
 
-use App\Requests\CalculatePriceRequest;
-use App\Requests\PurchaseRequest;
+use App\Request\CalculatePriceRequest;
+use App\Request\PurchaseRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;

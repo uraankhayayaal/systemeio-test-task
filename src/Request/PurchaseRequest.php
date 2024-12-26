@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Requests;
+namespace App\Request;
 
-use App\Enums\CountryTaxFormatEnum;
-use App\Enums\CouponEnum;
-use App\Enums\PaymentEnum;
+use App\Enum\CountryTaxFormatEnum;
+use App\Enum\CouponEnum;
+use App\Enum\PaymentEnum;
 use Symfony\Component\Validator\Constraints\AtLeastOneOf;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\NotBlank;
