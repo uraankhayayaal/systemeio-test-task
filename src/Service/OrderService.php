@@ -15,14 +15,17 @@ class OrderService
 {
     public function calculatePrice(CalculatePriceRequest $request): float
     {
+        // Fake the repository and entity
         $product = ProductEnum::tryFrom($request->product);
 
         if ($product === null) {
             throw new NotFoundHttpException("Product with id: $request->product not found");
         }
     
+        // Fake the repository and entity
         $coupon = CouponEnum::tryFrom($request->couponCode);
 
+        // Fake the repository and entity
         $countryTax = CountryTaxFormatEnum::tryFormat($request->taxNumber);
 
         return $this->getFinalPriceByTaxAndCoupon($product->price(), $countryTax, $coupon);
@@ -30,10 +33,13 @@ class OrderService
 
     public function purchase(PurchaseRequest $request, PaymentInterface $payment): bool
     {
+        // Fake the repository and entity
         $product = ProductEnum::tryFrom($request->product);
     
+        // Fake the repository and entity
         $coupon = CouponEnum::tryFrom($request->couponCode);
 
+        // Fake the repository and entity
         $countryTax = CountryTaxFormatEnum::tryFormat($request->taxNumber);
         
         $price = $this->getFinalPriceByTaxAndCoupon($product->price(), $countryTax, $coupon);
